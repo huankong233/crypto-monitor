@@ -111,7 +111,7 @@ class AppSettings:
     """Application settings."""
 
     # Current version
-    version: str = "2.3.0"  # Bump version
+    version: str = "2.3.1"  # Bump version
     data_source: str = (
         "OKX"  # "OKX", "OKX_MARK", "Binance", "BINANCE_MARK", "GATE", or "GATE_MARK"
     )
