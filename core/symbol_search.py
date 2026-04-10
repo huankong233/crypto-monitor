@@ -144,9 +144,7 @@ class SymbolSearchService(QObject):
         self.loading_started.emit()
 
         # Load in background thread
-        thread = threading.Thread(
-            target=self._load_symbols_thread, args=(source,), daemon=True
-        )
+        thread = threading.Thread(target=self._load_symbols_thread, args=(source,), daemon=True)
         thread.start()
 
     def _load_symbols_thread(self, source: str) -> None:
@@ -287,8 +285,8 @@ class SymbolSearchService(QObject):
 
                 symbols.append(
                     SymbolInfo(
-                        symbol=inst_id,
-                        raw_symbol=inst_id.replace("-", ""),
+                        symbol=f"{base}-{quote}",
+                        raw_symbol=inst_id,
                         base_asset=base,
                         quote_asset=quote,
                     )
