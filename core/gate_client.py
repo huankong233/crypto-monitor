@@ -139,6 +139,46 @@ class GateWebSocketWorker(BaseWebSocketWorker):
     def _display_pair(gate_pair: str) -> str:
         return gate_pair.replace("_", "-").upper()
 
+    def _parse_candle_row(self, row: object) -> dict | None:
+        try:
+            if isinstance(row, dict):
+                return {
+                    "timestamp": int(float(row.get("t", 0))) * 1000,
+                    "open": float(row.get("o", 0)),
+                    "high": float(row.get("h", 0)),
+                    "low": float(row.get("l", 0)),
+                    "close": float(row.get("c", 0)),
+                    "volume": float(row.get("v", 0)),
+                }
+
+            if isinstance(row, list) and len(row) >= 6:
+                timestamp = int(float(row[0])) * 1000
+                if self._market_type == "mark":
+                    open_price = float(row[1])
+                    close = float(row[2])
+                    high = float(row[3])
+                    low = float(row[4])
+                    volume = float(row[5])
+                else:
+                    volume = float(row[1])
+                    close = float(row[2])
+                    high = float(row[3])
+                    low = float(row[4])
+                    open_price = float(row[5])
+
+                return {
+                    "timestamp": timestamp,
+                    "open": open_price,
+                    "high": high,
+                    "low": low,
+                    "close": close,
+                    "volume": volume,
+                }
+        except Exception:
+            return None
+
+        return None
+
     async def _send_ping(self):
         if self._ws and not self._ws.closed:
             try:

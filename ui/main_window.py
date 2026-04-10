@@ -332,12 +332,9 @@ class MainWindow(QMainWindow):
         source = self._normalize_data_source(
             self._settings_manager.settings.data_source
         )
-        lang = self._settings_manager.settings.language
         source_lower = source.lower()
 
-        logger.debug(
-            f"Opening browser for pair: {pair}, source: {source}, lang: {lang}"
-        )
+        logger.debug(f"Opening browser for pair: {pair}, source: {source}")
 
         if source_lower == "binance":
             formatted_pair = pair.replace("-", "_").upper()
@@ -355,6 +352,8 @@ class MainWindow(QMainWindow):
             url = f"https://www.gate.com/futures/{quote_asset}/{formatted_pair}"
         elif source_lower == "okx_mark":
             formatted_pair = pair.lower()
+            if formatted_pair.endswith("-swap"):
+                formatted_pair = formatted_pair[:-5]
             url = f"https://www.okx.com/trade-swap/{formatted_pair}-swap"
         else:
             formatted_pair = pair.lower()

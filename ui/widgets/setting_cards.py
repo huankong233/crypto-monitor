@@ -455,9 +455,6 @@ class DisplaySettingCard(ExpandGroupSettingCard):
     auto_scroll_changed = pyqtSignal(
         bool, int
     )  # Emitted when auto scroll settings change
-    auto_scroll_changed = pyqtSignal(
-        bool, int
-    )  # Emitted when auto scroll settings change
     minimalist_view_changed = pyqtSignal(
         bool
     )  # Emitted when minimalist view mode changes

@@ -251,8 +251,8 @@ class SymbolSearchService(QObject):
                 # OKX uses BASE-QUOTE format already
                 symbols.append(
                     SymbolInfo(
-                        symbol=inst_id,
-                        raw_symbol=inst_id.replace("-", ""),
+                        symbol=f"{base}-{quote}",
+                        raw_symbol=inst_id,
                         base_asset=base,
                         quote_asset=quote,
                     )
@@ -387,7 +387,7 @@ class SymbolSearchService(QObject):
             base, quote = parts[0], parts[1]
             symbols.append(
                 SymbolInfo(
-                    symbol=contract,
+                    symbol=f"{base}-{quote}",
                     raw_symbol=contract,
                     base_asset=base,
                     quote_asset=quote,

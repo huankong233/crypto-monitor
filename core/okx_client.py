@@ -5,7 +5,6 @@ Enhanced with automatic reconnection and incremental subscription.
 """
 
 import asyncio
-import datetime
 import json
 import logging
 import time

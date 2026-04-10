@@ -20,6 +20,7 @@ All notable changes to this project will be documented in this file.
 - **Gate**: Enhanced futures candle/ticker parsing compatibility for different payload shapes.
 - **UI**: Updated data source selector to display localized labels while persisting canonical source values.
 - **Chart**: Improved chart fetch path to instantiate source-specific clients for hover mini-chart data.
+- **Search**: Normalized OKX/Gate swap symbol display to `BASE-QUOTE` while preserving exchange-native identifiers in raw fields.
 
 ### Fixed
 
@@ -28,7 +29,11 @@ All notable changes to this project will be documented in this file.
 - **Percentage**: Fixed incorrect or stuck `0.00%` on mark sources by correcting open-price baseline logic.
 - **Gate API**: Fixed failed open-price request caused by incompatible parameter combinations.
 - **Navigation**: Fixed double-click browser routing so each source opens the correct exchange page instead of falling back to OKX.
+- **Navigation**: Fixed OKX swap browser URL generation to avoid duplicate `-swap` suffix and restored locale-aware URL prefix.
 - **Settings**: Fixed data source persistence issue where selection could revert to OKX after reopening settings.
+- **Core**: Fixed Gate worker daily basis refresh path by adding missing candle row parser in WebSocket worker.
+- **UI**: Removed duplicate `auto_scroll_changed` signal declaration in display settings card.
+- **Docs**: Updated Chinese user manual with `UTC+8` basis description to keep docs aligned with settings.
 
 ## [0.5.0] - 2026-01-12
 
